@@ -15,7 +15,7 @@ public class BasicJwtService: JwtService
     }
     public string CreateToken(Claim[] claims)
     {
-        var key = Encoding.UTF8.GetBytes(_config["jwt:key"]);
+        var key = Encoding.UTF8.GetBytes(_config["jwt:secret"]);
 
         var securityKey = new SymmetricSecurityKey(key);
         

@@ -15,6 +15,8 @@ public class Rfc2898Hash: HashService
 
     public bool Verify(string password, PasswordHash hash)
     {
-        return true;
+        var Pbkdf2 = new Rfc2898DeriveBytes(password, hash.salt, 2);
+        var hash2 = Pbkdf2.GetBytes(32);
+        return hash.password == BitConverter.ToString(hash2);
     }
 }

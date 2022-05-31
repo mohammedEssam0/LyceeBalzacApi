@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LyceeBalzacApi.Data;
 using LyceeBalzacApi.data_models;
 using LyceeBalzacApi.security;
 using LyceeBalzacApi.security.passwordHashing;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace LyceeBalzacApi.Controllers
 {
@@ -21,22 +15,22 @@ namespace LyceeBalzacApi.Controllers
         private HashService _hashService;
         private LyceeBalzacApiContext _context { get; }
 
-        public UsersController(LyceeBalzacApiContext context, IConfiguration configuration)
+        public UsersController(LyceeBalzacApiContext context, IConfiguration configuration, JwtService jwtService, HashService hashService)
         {
             _context = context;
-            _jwtService = new BasicJwtService(configuration);
-            _hashService = new Rfc2898Hash();
+            _jwtService = jwtService;
+            _hashService = hashService;
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public IActionResult Get()
         {
             return Ok(_context.Users.ToList());
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        //[Authorize]
         public IActionResult Get(int id)
         {
             var user = _context.Users.FirstOrDefault(x => x.Id == id);
@@ -44,23 +38,29 @@ namespace LyceeBalzacApi.Controllers
             {
                 return NotFound();
             }
-
-            return Ok(user);
+            
+            return Ok(user.ToUserResponse());
         }
 
         [HttpPost]
-        [Authorize]
-        public IActionResult Post([FromBody] User user)
+        ////[Authorize]
+        public IActionResult Post(User user)
         {
+            if(_context.Users.First(x=>x.Email == user.Email) != null)
+            {
+                return BadRequest("Email already exists");
+            }
             user.UserStatus = UserStatus.Pending;
             var hashedPassword = _hashService.Hash(user.PasswordHash);
+            user.PasswordHash = hashedPassword.password;
+            user.Salt = hashedPassword.salt;
             _context.Users.Add(user);
             _context.SaveChanges();
             return CreatedAtAction(nameof(Get), new {id = user.Id}, user);
         }
 
         [HttpPut("{id}")]
-        [Authorize]
+        //[Authorize]
         public IActionResult Put(int id, [FromBody] User user)
         {
             var idUser = _jwtService.GetUserIdFromToken(Request.Headers["Authorization"]);
@@ -86,13 +86,13 @@ namespace LyceeBalzacApi.Controllers
             _context.SaveChanges();
             return Ok(userToUpdate);
         }
-        
+
         [HttpDelete("{id}")]
-        [Authorize]
+        //[Authorize]
         public IActionResult Delete(int id)
         {
             var idUser = _jwtService.GetUserIdFromToken(Request.Headers["Authorization"]);
-            
+
             if (idUser == null)
             {
                 return Unauthorized("You are not authorized to perform this action");
@@ -113,9 +113,9 @@ namespace LyceeBalzacApi.Controllers
             _context.SaveChanges();
             return Ok();
         }
-        
+
         [HttpPost("{id}/activate")]
-        [Authorize]
+        //[Authorize]
         public IActionResult Activate(int id)
         {
             var idUser = _jwtService.GetUserIdFromToken(Request.Headers["Authorization"]);
@@ -139,9 +139,9 @@ namespace LyceeBalzacApi.Controllers
             _context.SaveChanges();
             return Ok();
         }
-        
+
         [HttpPost("{id}/deactivate")]
-        [Authorize]
+        //[Authorize]
         public IActionResult Deactivate(int id)
         {
             var idUser = _jwtService.GetUserIdFromToken(Request.Headers["Authorization"]);
@@ -165,6 +165,5 @@ namespace LyceeBalzacApi.Controllers
             _context.SaveChanges();
             return Ok();
         }
-        
     }
 }
