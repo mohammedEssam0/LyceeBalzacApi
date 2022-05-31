@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "b/3UlWuwklvGFpBCD7rXe9gZTykfKu6exZZY5Yz1+5t5K1D8afadC9bVTXrbDy36ib8vlu525wfFFh5WPZ89mA==",
+  "dgSpecHash": "ddS0zemqtsypgagiXm+s7q4ubgpP5zIR6j6vDOdfWS6jsdtpzj1/bKgiQMqedfkD8AvYXYyyTZBJknpOLxfX+Q==",
   "success": true,
   "projectFilePath": "D:\\LyceeBalzacApi\\LyceeBalzacApi\\LyceeBalzacApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Receiption\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",
     "C:\\Users\\Receiption\\.nuget\\packages\\azure.identity\\1.3.0\\azure.identity.1.3.0.nupkg.sha512",
+    "C:\\Users\\Receiption\\.nuget\\packages\\fluentvalidation\\11.0.2\\fluentvalidation.11.0.2.nupkg.sha512",
     "C:\\Users\\Receiption\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Receiption\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Receiption\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

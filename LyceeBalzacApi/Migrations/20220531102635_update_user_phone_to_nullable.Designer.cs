@@ -4,6 +4,7 @@ using LyceeBalzacApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LyceeBalzacApi.Migrations
 {
     [DbContext(typeof(LyceeBalzacApiContext))]
-    partial class LyceeBalzacApiContextModelSnapshot : ModelSnapshot
+    [Migration("20220531102635_update_user_phone_to_nullable")]
+    partial class update_user_phone_to_nullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
