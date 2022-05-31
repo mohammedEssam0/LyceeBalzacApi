@@ -18,7 +18,7 @@ namespace LyceeBalzacApi.Controllers
         private HashService _hashService;
         private LyceeBalzacApiContext _context { get; }
 
-        public UsersController(LyceeBalzacApiContext context, IConfiguration configuration, JwtService jwtService,
+        public UsersController(LyceeBalzacApiContext context, JwtService jwtService,
             HashService hashService)
         {
             _context = context;

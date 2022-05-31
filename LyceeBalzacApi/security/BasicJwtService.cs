@@ -27,7 +27,6 @@ public class BasicJwtService: JwtService
 
     public int? GetUserIdFromToken(string token)
     {
-        Console.WriteLine(token);
         var key = Encoding.UTF8.GetBytes(_config["Jwt:secret"]);
         var securityKey = new SymmetricSecurityKey(key);
         var tokenHandler = new JwtSecurityTokenHandler();

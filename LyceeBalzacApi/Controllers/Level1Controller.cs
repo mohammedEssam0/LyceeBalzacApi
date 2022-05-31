@@ -1,69 +1,82 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LyceeBalzacApi.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LyceeBalzacApi.data_models;
+using LyceeBalzacApi.security;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace LyceeBalzacApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class Level1Controller : ControllerBase
     {
-        static readonly ILevel1Services services = new Level1Services();
-        [HttpGet]
-        public IEnumerable<Level1> GetAllData()
+        private LyceeBalzacApiContext _context;
+        private JwtService _jwtService;
+        public Level1Controller(LyceeBalzacApiContext context, JwtService jwtService)
         {
-            return services.GetAll();
+            _context = context;
+            _jwtService = jwtService;
         }
-        [Route("{id}")]
         [HttpGet]
-        public Level1 GetRecord(int id)
+        public IActionResult Get()
         {
-            Level1 record = services.Get(id);
-            if(record == null)
+            var level1 = _context.Level1.ToList();
+            return Ok(level1);
+        }
+        
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var level1 = _context.Level1.Find(id);
+            if (level1 == null)
             {
-                // throw new HttpResponseException(System.Net.HttpStatusCode.NotFound);
-                throw new BadHttpRequestException("Not Found");
+                return NotFound();
             }
-            return record;
+            return Ok(level1);
         }
-        [Route("ByName/{Name}")]
-        public IEnumerable<Level1> GetRecordByName(string Name)
-        {
-            return services.GetAll().Where(x => string.Equals(x.EnglishName, Name, StringComparison.OrdinalIgnoreCase));
-        }
+        
         [HttpPost]
-        //Create a new record
-        public Level1 PostRecord([FromBody]Level1 record)
+        public IActionResult Post([FromBody] Level1 level1)
         {
-            record = services.Add(record);
-            return record;
-        }
-        [HttpDelete]
-        [Route("{id}")]
-        public void DeleteRecord(int id)
-        {
-            Level1 record = services.Get(id);
-            if(record == null)
+            var id = _jwtService.GetUserIdFromToken(Request.Headers["Authorization"].ToString().Substring(7));
+            if (id == null)
             {
-                throw new BadHttpRequestException("Not found");
+                return Unauthorized();
             }
-            else
-            {
-                services.Remove(id);
+            level1.Entry_ID = id;
+            _context.Level1.Add(level1);
+            _context.SaveChanges();
+            return Ok(level1);
+        }
 
-            }
-            
-        }
-        [Route("{id}")]
-        [HttpPut]
-        public void PutProduct(int id, Level1 record)
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Level1 level1)
         {
-            record.Id = id;
-            if(!services.Update(record))
+            var Entry_id = _jwtService.GetUserIdFromToken(Request.Headers["Authorization"].ToString().Substring(7));
+            if (Entry_id == null)
             {
-                throw new BadHttpRequestException("can't update");
+                return Unauthorized();
             }
+            var level1ToUpdate = _context.Level1.Find(id);
+            level1ToUpdate.Id = level1.Id;
+            level1ToUpdate.ArabicName = level1.ArabicName;
+            level1ToUpdate.EnglishName = level1.EnglishName;
+            level1ToUpdate.Notes = level1.Notes;
+            _context.SaveChanges();
+            return Ok(level1ToUpdate);
         }
+        
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var level1ToDelete = _context.Level1.Find(id);
+            _context.Level1.Remove(level1ToDelete);
+            _context.SaveChanges();
+            return Ok(level1ToDelete);
+        }
+        
     }
 }
