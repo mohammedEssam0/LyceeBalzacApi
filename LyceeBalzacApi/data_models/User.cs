@@ -20,7 +20,7 @@ public class User
     public Role Role { get; set; } = Role.Student;
 
     public GetUserResponse ToUserResponse() =>
-        new GetUserResponse(FirstName, LastName, Email, Role, PhoneNumber, Address);
+        new GetUserResponse(FirstName, LastName, Email, Role, PhoneNumber, Address, Id);
 }
 
 public enum Role
