@@ -63,7 +63,7 @@ namespace LyceeBalzacApi.Controllers
             var level1ToUpdate = _context.Level1.Find(id);
             level1ToUpdate.Id = level1.Id;
             level1ToUpdate.ArabicName = level1.ArabicName;
-            level1ToUpdate.EnglishName = level1.EnglishName;
+            level1ToUpdate.EnglishName = level1.EnglishName;    
             level1ToUpdate.Notes = level1.Notes;
             _context.SaveChanges();
             return Ok(level1ToUpdate);

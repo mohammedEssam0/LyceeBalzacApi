@@ -12,5 +12,6 @@ namespace LyceeBalzacApi.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Level1> Level1 { get; set; }
+        public DbSet<Level2> Level2 { get; set; }
     }
 }
