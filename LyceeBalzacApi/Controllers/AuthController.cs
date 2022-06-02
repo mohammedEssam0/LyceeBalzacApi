@@ -16,7 +16,7 @@ namespace LyceeBalzacApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors(origins: "https://192.168.100.35", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://192.168.100.35", headers: "*", methods: "*")]
     public class AuthController : ControllerBase
     {
         private readonly LyceeBalzacApiContext _context;

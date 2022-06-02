@@ -36,10 +36,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: "Cors",
+    options.AddPolicy(name: "CorsPolicy",
         policy  =>
         {
-            policy.WithOrigins("https://192.168.100.35:3000");
+            policy.WithOrigins("http://192.168.100.35:3000");
         });
 });
 
@@ -54,7 +54,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("Cors");
+app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
