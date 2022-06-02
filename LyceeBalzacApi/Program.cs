@@ -34,17 +34,27 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     }
 );
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "Cors",
+        policy  =>
+        {
+            policy.WithOrigins("https://192.168.100.35:3000");
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("Cors");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

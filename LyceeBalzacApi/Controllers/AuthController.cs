@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Http.Cors;
 using LyceeBalzacApi.Data;
 using LyceeBalzacApi.data_models;
 using LyceeBalzacApi.request;
@@ -15,11 +16,12 @@ namespace LyceeBalzacApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors(origins: "https://192.168.100.35", headers: "*", methods: "*")]
     public class AuthController : ControllerBase
     {
-        private LyceeBalzacApiContext _context;
-        private JwtService _jwtService;
-        private HashService _hashService;
+        private readonly LyceeBalzacApiContext _context;
+        private readonly JwtService _jwtService;
+        private readonly HashService _hashService;
         
         public AuthController(LyceeBalzacApiContext context, JwtService jwtService, HashService hashService)
         {
@@ -52,7 +54,7 @@ namespace LyceeBalzacApi.Controllers
         
         [HttpPost("register")]
         public IActionResult Register([FromBody] User user)
-        {
+        { 
             if(_context.Users.FirstOrDefault(x=>x.Email == user.Email) != null)
             {
                 return BadRequest("Email already exists");

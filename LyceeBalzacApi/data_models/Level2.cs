@@ -5,8 +5,8 @@ namespace LyceeBalzacApi.data_models
     public class Level2
     {
         [Key]
-        public int Level2Id { get; set; }
         public int Id { get; set; }
+        public int Level1Id { get; set; }
         public string Level2_Name_A { get; set; }
         public string Level2_Name_E { get; set; }
         public string? Notes { get; set; }

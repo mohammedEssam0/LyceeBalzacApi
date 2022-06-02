@@ -4,11 +4,13 @@ using LyceeBalzacApi.security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LyceeBalzacApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class Level2Controller : ControllerBase
     {
         private LyceeBalzacApiContext _context;
@@ -23,14 +25,16 @@ namespace LyceeBalzacApi.Controllers
         public IActionResult Get()
         {
             var level2 = _context.Level2.ToList();
-            if(level2 == null)
-                return NotFound();
             return Ok(level2);
         }
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var level2 = _context.Level2.Find(id);
+            if (level2 == null)
+            {
+                return NotFound();
+            }
             return Ok(level2);
         }
         [HttpPost]
@@ -41,8 +45,8 @@ namespace LyceeBalzacApi.Controllers
             {
                 return Unauthorized();
             }
-            var Level1id = _context.Level1.Find(level2.Id);
-            var LastId = _context.Level2.OrderByDescending(x => x.Level2Id).FirstOrDefault(x => x.Id == Level1id.Id);
+            var Level1id = _context.Level1.Find(level2.Level1Id);
+            var LastId = _context.Level2.OrderByDescending(x => x.Id).FirstOrDefault(x => x.Level1Id == Level1id.Id);
             if (Level1id == null)
             {
                 return NotFound();
@@ -50,12 +54,12 @@ namespace LyceeBalzacApi.Controllers
             else if(LastId == null)
             {
 
-                 level2.Level2Id = Convert.ToInt16(Level1id.Id + $"1");
+                 level2.Id = Convert.ToInt16(Level1id.Id + $"1");
 
             }
             else
             {
-                level2.Level2Id = LastId.Level2Id + 1;
+                level2.Id = LastId.Id + 1;
             }
             _context.Level2.Add(level2);
             _context.SaveChanges();
@@ -70,7 +74,7 @@ namespace LyceeBalzacApi.Controllers
                 return Unauthorized();
             }
             var level2ToUpdate = _context.Level2.Find(id);
-            level2ToUpdate.Level2Id = level2.Level2Id;
+            level2ToUpdate.Id = level2.Id;
             level2ToUpdate.Level2_Name_A = level2.Level2_Name_A;
             level2ToUpdate.Level2_Name_E = level2.Level2_Name_E;
             level2ToUpdate.Notes = level2.Notes;

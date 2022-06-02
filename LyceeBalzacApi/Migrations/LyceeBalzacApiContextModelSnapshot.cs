@@ -51,16 +51,16 @@ namespace LyceeBalzacApi.Migrations
 
             modelBuilder.Entity("LyceeBalzacApi.data_models.Level2", b =>
                 {
-                    b.Property<int>("Level2Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Level2Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("Entry_ID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("Level1Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Level2_Name_A")
@@ -74,7 +74,7 @@ namespace LyceeBalzacApi.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Level2Id");
+                    b.HasKey("Id");
 
                     b.ToTable("Level2");
                 });
