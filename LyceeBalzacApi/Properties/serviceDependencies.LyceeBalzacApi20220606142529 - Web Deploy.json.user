@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "apis1": {
+      "restored": true,
+      "restoreTime": "2022-06-06T12:34:52.8219225Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2022-06-06T12:51:56.9002273Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "a33d74a2-5459-4414-aca5-e0fdc09eed4c"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "LyceeBalzacApi20220606125749ResourceGroup"
+    },
+    "apis1.resourceGroupName": {
+      "Name": "apis1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "LyceeBalzacApi20220606125749ResourceGroup"
+    },
+    "apis1.subscriptionId": {
+      "Name": "apis1.subscriptionId",
+      "Type": "subscription",
+      "Value": "a33d74a2-5459-4414-aca5-e0fdc09eed4c"
+    }
+  }
+}
