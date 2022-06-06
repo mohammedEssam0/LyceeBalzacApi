@@ -1,12 +1,62 @@
-﻿using Microsoft.AspNetCore.Builder;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using LyceeBalzacApi.Data;
+using LyceeBalzacApi.security;
+using LyceeBalzacApi.security.passwordHashing;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
-namespace LyceeBalzacApi
-{
-    public class Startup
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<LyceeBalzacApiContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LyceeBalzacApiContext") ?? throw new InvalidOperationException("Connection string 'LyceeBalzacApiContext' not found.")));
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<JwtService, BasicJwtService>();
+builder.Services.AddScoped<HashService, Rfc2898Hash>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
     {
-        public void Configure(IApplicationBuilder app)
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters()
         {
-            // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        }
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidAudience = builder.Configuration["Jwt:audience"],
+            ValidIssuer = builder.Configuration["Jwt:issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:secret"]))
+        };
     }
+);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "CorsPolicy",
+        policy  =>
+        {
+            policy.WithOrigins("http://192.168.100.35:3000");
+        });
+});
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+app.UseCors("CorsPolicy");
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();

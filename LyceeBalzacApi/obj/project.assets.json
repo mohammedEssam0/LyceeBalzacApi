@@ -10585,24 +10585,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DEVELOPER2-PC\\.nuget\\packages\\": {},
-    "D:\\devExpress\\Components\\Offline Packages": {}
+    "C:\\Users\\Receiption\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\LyceeWebAPI\\LyceeBalzacApi\\LyceeBalzacApi.csproj",
+      "projectUniqueName": "D:\\LyceeBalzacApi\\LyceeBalzacApi\\LyceeBalzacApi.csproj",
       "projectName": "LyceeBalzacApi",
-      "projectPath": "D:\\LyceeWebAPI\\LyceeBalzacApi\\LyceeBalzacApi.csproj",
-      "packagesPath": "C:\\Users\\DEVELOPER2-PC\\.nuget\\packages\\",
-      "outputPath": "D:\\LyceeWebAPI\\LyceeBalzacApi\\obj\\",
+      "projectPath": "D:\\LyceeBalzacApi\\LyceeBalzacApi\\LyceeBalzacApi.csproj",
+      "packagesPath": "C:\\Users\\Receiption\\.nuget\\packages\\",
+      "outputPath": "D:\\LyceeBalzacApi\\LyceeBalzacApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\devExpress\\Components\\Offline Packages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\DEVELOPER2-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+        "C:\\Users\\Receiption\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10610,7 +10610,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "D:\\devExpress\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -10698,7 +10697,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   },
