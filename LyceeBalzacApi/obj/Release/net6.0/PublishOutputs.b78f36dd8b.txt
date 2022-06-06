@@ -10,6 +10,10 @@ D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\FluentValidation.
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\Humanizer.dll
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\MessagePack.dll
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\MessagePack.Annotations.dll
+D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\System.Web.Cors.dll
+D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\System.Net.Http.Formatting.dll
+D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\System.Web.Http.dll
+D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\System.Web.Http.Cors.dll
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Razor.Language.dll
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
@@ -66,6 +70,7 @@ D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\Microsoft.VisualS
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\Newtonsoft.Json.dll
+D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\Newtonsoft.Json.Bson.dll
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\NuGet.Common.dll
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\NuGet.Configuration.dll
 D:\LyceeBalzacApi\LyceeBalzacApi\obj\Release\net6.0\PubTmp\Out\NuGet.DependencyResolver.Core.dll

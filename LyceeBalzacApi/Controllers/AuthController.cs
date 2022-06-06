@@ -16,20 +16,19 @@ namespace LyceeBalzacApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors(origins: "http://192.168.100.35", headers: "*", methods: "*")]
     public class AuthController : ControllerBase
     {
         private readonly LyceeBalzacApiContext _context;
         private readonly JwtService _jwtService;
         private readonly HashService _hashService;
-        
+           
         public AuthController(LyceeBalzacApiContext context, JwtService jwtService, HashService hashService)
         {
             _context = context;
             _jwtService = jwtService;
             _hashService = hashService;
         }
-        
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel loginModel)
         {

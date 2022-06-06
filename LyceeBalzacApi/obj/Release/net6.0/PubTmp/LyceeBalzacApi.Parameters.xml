@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="IIS Web Application Name" description="" value="IisPath" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\LyceeBalzacApi\\LyceeBalzacApi\\bin\\Release\\net6\.0\\publish\\$" />
+  <parameter name="IIS Web Application Name" description="" value="LyceeBalzacApi20220606142529" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\LyceeBalzacApi\\LyceeBalzacApi\\obj\\Release\\net6\.0\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>
