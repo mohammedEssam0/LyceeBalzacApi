@@ -1,16 +1,16 @@
-name: Build and deploy .NET Core application to Web App LyceeBalzacApi with API Management Service LyceeBalzacApi-LyceeBalzacApi
+name: Build and deploy .NET Core application to Web App LyceeBalzacApi20220606135255 with API Management Service LyceeBalzacApiapi-LyceeBalzacApi
 on:
   push:
     branches:
     - master
 env:
-  AZURE_WEBAPP_NAME: LyceeBalzacApi
+  AZURE_WEBAPP_NAME: LyceeBalzacApi20220606135255
   AZURE_WEBAPP_PACKAGE_PATH: LyceeBalzacApi\publish
-  AZURE_APIM_RESOURCE_PATH: /v1
+  AZURE_APIM_RESOURCE_PATH: /
   AZURE_APIM_RESOURCEGROUP: LyceeBalzacApi20220606125749ResourceGroup
-  AZURE_APIM_SERVICENAME: LyceeBalzacApi
+  AZURE_APIM_SERVICENAME: LyceeBalzacApiapi
   AZURE_APIM_API_ID: LyceeBalzacApi
-  AZURE_APIM_APPSERVICEURL: https://lyceebalzacapi.azurewebsites.net
+  AZURE_APIM_APPSERVICEURL: https://lyceebalzacapi20220606135255.azurewebsites.net
   SWASHBUCLE_ASPNET_CORE_CLI_PACKAGE_VERSION: 5.6.3
   SWASHBUCKLE_DOTNET_CORE_VERSION: 3.1.x
   API_IMPORT_SPECIFICATION_PATH: LyceeBalzacApi\publish\swagger.json
@@ -64,11 +64,11 @@ jobs:
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        publish-profile: ${{ secrets.LyceeBalzacApi_FFFF }}
+        publish-profile: ${{ secrets.LyceeBalzacApi20220606135255_FFFF }}
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.LyceeBalzacApi_SPN }}
+        creds: ${{ secrets.LyceeBalzacApiapi_SPN }}
     - name: Import API into Azure API Management
       run: az apim api import --path "${{ env.AZURE_APIM_RESOURCE_PATH }}" --resource-group "${{ env.AZURE_APIM_RESOURCEGROUP }}" --service-name "${{ env.AZURE_APIM_SERVICENAME }}" --api-id "${{ env.AZURE_APIM_API_ID }}" --service-url "${{ env.AZURE_APIM_APPSERVICEURL }}" --specification-path "${{ env.API_IMPORT_SPECIFICATION_PATH }}" --specification-format OpenApi --subscription-required false
     - name: logout
